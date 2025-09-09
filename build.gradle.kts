@@ -48,6 +48,7 @@ dependencies {
 
 tasks.withType<Test> {
 	useJUnitPlatform()
+    finalizedBy(tasks.spotbugsMain)
 }
 
 tasks.register<Zip>("zipJavaDoc") {
@@ -66,8 +67,4 @@ tasks.spotbugsMain {
         required = true
         outputLocation.set(layout.buildDirectory.file("reports/spotbugs/spotbugs.html"))
     }
-}
-
-tasks.test {
-    finalizedBy(tasks.spotbugsMain)
 }
